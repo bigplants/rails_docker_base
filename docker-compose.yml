@@ -1,0 +1,40 @@
+version: '2'
+services:
+  web: &rails_service_base
+    build: .
+    command: /usr/local/bin/start.sh
+    volumes:
+      - "app-sync:/myapp"
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+    container_name: web
+  spring:
+    <<: *rails_service_base
+    command: spring server
+    ports: []
+    pid: host
+    environment:
+      PATH: /myapp/bin:$PATH
+      SPRING_SOCKET: /tmp/spring/spring.sock
+    volumes:
+      - "app-sync:/myapp"
+      - "spring:/tmp/spring"
+    container_name: spring
+  db:
+    image: mysql/mysql-server:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: root_password
+    volumes:
+      - "mysql-data-sync:/var/lib/mysql"
+    ports:
+      - "6033:3306" #DB clientからの接続用
+    container_name: db
+
+volumes:
+  spring:
+  app-sync:
+    external: true
+  mysql-data-sync:
+    external: true
