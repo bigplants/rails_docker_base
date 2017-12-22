@@ -18,7 +18,9 @@
 
 .byebug_history
 
-mysql_data/
+/mysql_data/*
+!/mysql_data/.gitkeep
+
 .idea
 *.iml
 
