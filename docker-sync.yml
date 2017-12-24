@@ -1,8 +1,8 @@
 version: '2'
 
 syncs:
-  app-sync:
+  rails-app-sync:
     src: .
     sync_excludes: ['./mysql_data']
-  mysql-data-sync:
+  mysql-db-data-sync:
     src: ./mysql_data

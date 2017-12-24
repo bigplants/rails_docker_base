@@ -9,10 +9,10 @@ volumes:
 services:
   web:
     volumes:
-      - app-sync:/myapp
+      - rails-app-sync:/myapp
   spring:
     volumes:
-      - app-sync:/myapp
+      - rails-app-sync:/myapp
   db:
     volumes:
-      - mysql-data-sync:/var/lib/mysql
+      - mysql-db-data-sync:/var/lib/mysql
