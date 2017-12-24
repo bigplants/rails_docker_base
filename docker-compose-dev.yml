@@ -1,0 +1,18 @@
+version: '2'
+
+volumes:
+  app-sync:
+    external: true
+  mysql-data-sync:
+    external: true
+
+services:
+  web:
+    volumes:
+      - app-sync:/myapp
+  spring:
+    volumes:
+      - app-sync:/myapp
+  db:
+    volumes:
+      - mysql-data-sync:/var/lib/mysql

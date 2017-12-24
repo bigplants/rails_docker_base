@@ -4,9 +4,9 @@ services:
     build: .
     command: /usr/local/bin/start.sh
     volumes:
-      - "app-sync:/myapp"
+      - .:/myapp
     ports:
-      - "3000:3000"
+      - 3000:3000
     depends_on:
       - db
     container_name: web
@@ -16,25 +16,21 @@ services:
     ports: []
     pid: host
     environment:
-#      PATH: /myapp/bin:$PATH
       SPRING_SOCKET: /tmp/spring/spring.sock
     volumes:
-      - "app-sync:/myapp"
-      - "spring:/tmp/spring"
+      - .:/myapp
+      - spring:/tmp/spring
     container_name: spring
   db:
     image: mysql/mysql-server:5.7
     environment:
-      MYSQL_ROOT_PASSWORD: root_password
+      MYSQL_ROOT_PASSWORD: 'root_password'
+      MYSQL_ROOT_HOST: '%'
     volumes:
-      - "mysql-data-sync:/var/lib/mysql"
+      - ./mysql_data:/var/lib/mysql
     ports:
-      - "6033:3306" #DB clientからの接続用
+      - 6033:3306 #DB clientからの接続用
     container_name: db
 
 volumes:
   spring:
-  app-sync:
-    external: true
-  mysql-data-sync:
-    external: true

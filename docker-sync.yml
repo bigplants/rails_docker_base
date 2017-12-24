@@ -2,7 +2,7 @@ version: '2'
 
 syncs:
   app-sync:
-    src: '.'
-    sync_excludes: ['mysql_data']
+    src: .
+    sync_excludes: ['./mysql_data']
   mysql-data-sync:
-    src: './mysql_data'
+    src: ./mysql_data
