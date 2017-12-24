@@ -1,0 +1,5 @@
+{
+  "name": "rails_docker_base",
+  "private": true,
+  "dependencies": {}
+}

@@ -16,7 +16,7 @@ services:
     ports: []
     pid: host
     environment:
-      PATH: /myapp/bin:$PATH
+#      PATH: /myapp/bin:$PATH
       SPRING_SOCKET: /tmp/spring/spring.sock
     volumes:
       - "app-sync:/myapp"
